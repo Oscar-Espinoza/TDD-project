@@ -1,29 +1,30 @@
+# frozen_string_literal: true
+
+# Solver
 class Solver
-  def fact(n)
-  if n<= 1
-    1
-  else
-    n * fact( n - 1 )
-  end
+  def factorial(num)
+    if num.negative?
+      raise ArgumentError, 'Number cannot be negative'
+    elsif num <= 1
+      1
+    else
+      num * factorial(num - 1)
+    end
   end
 
-  def reverse_string(string)
-  new_string = []
-  i = string.length-1
-  while i >= 0
-    new_string.push(string[i])
-    i -= 1
-  end
-  new_string.join
+  def reverse(string)
+    new_string = ''
+    string.each_char do |char|
+      new_string = char + new_string
+    end
+    new_string
   end
 
   def fizzbuzz(num)
-  result = ""
+    return 'fizzbuzz' if (num % 3).zero? && (num % 5).zero?
+    return 'fizz' if (num % 3).zero?
+    return 'buzz' if (num % 5).zero?
 
-  result << "Fizz" if num % 3 == 0
-  result << "Buzz" if num % 5 == 0
-
-  result.presence || num
+    num.to_s
   end
-
 end
